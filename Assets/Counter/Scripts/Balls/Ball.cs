@@ -14,4 +14,14 @@ public class Ball : MonoBehaviour
             _inbox = true;
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<Box>())
+        {
+            _inbox = false;
+        }
+    }
 }
+
+
