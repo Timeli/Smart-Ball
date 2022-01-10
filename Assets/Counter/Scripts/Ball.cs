@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private bool _inbox;
+    public bool InBox => _inbox;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerStay(Collider other)
     {
-        
+        if (other.GetComponent<Box>())
+        {
+            _inbox = true;
+        }
     }
 }
