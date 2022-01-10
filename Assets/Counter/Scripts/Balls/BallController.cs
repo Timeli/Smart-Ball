@@ -3,35 +3,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(Ball))]
 public class BallController : MonoBehaviour
 {
     private Ball _ball;
-    private Mover _mover;
-    private ColorChanger _colorChanger;
+    private float _elapsedTime = 0f;
+    private float _notificationTime = 1f;
 
-    private float _toGreenTime = 3f;
-    private float _toOrangeTime = 6f;
-    private float _toRedTime = 10f;
+    public event Action<float> Ticked;
 
-    private void Awake()
+    private void Start()
     {
-        Init();
+        _ball = GetComponent<Ball>();
     }
 
-    float abc = 0;
     private void Update()
     {
         if (_ball.InBox)
         {
-            abc += Time.deltaTime;
-            Debug.Log(abc);
+            _elapsedTime += Time.deltaTime;
+            if (_elapsedTime > _notificationTime)
+            {
+                Ticked?.Invoke(_elapsedTime);
+                _elapsedTime = 0;
+            }
         }
-    }
-
-    private void Init()
-    {
-        _ball = GetComponent<Ball>();
-        _colorChanger = GetComponent<ColorChanger>();
-        _mover = GetComponent<Mover>();
+        else
+        {
+            _elapsedTime = 0;
+            Ticked?.Invoke(_elapsedTime);
+        }
     }
 }
