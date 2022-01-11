@@ -17,33 +17,22 @@ public class ColorChanger : MonoBehaviour
     private readonly int _toRedTime = 12;
 
     private Renderer _renderer;
-    private float _allTime;
 
     private void Start()
     {
         _renderer = GetComponent<Renderer>();
     }
 
-    private void ChangeColor(float tick)
+    private void ChangeColor(float allTimeInBox)
     {
-        _allTime += tick;
-        print(_allTime);
-        if (_allTime < _toGreenTime)
-        {
+        if (allTimeInBox == 0)
             _renderer.material = _blue;
-        }
-        else if (_allTime > _toGreenTime && _allTime < _toOrangeTime)
-        {
+        else if (allTimeInBox > _toGreenTime && allTimeInBox < _toOrangeTime)
             _renderer.material = _green;
-        }
-        else if (_allTime > _toOrangeTime && _allTime <= _toRedTime)
-        {
+        else if (allTimeInBox > _toOrangeTime && allTimeInBox <= _toRedTime)
             _renderer.material = _orange;
-        }
-        else if (_allTime > _toRedTime)
-        {
+        else if (allTimeInBox > _toRedTime)
             _renderer.material = _red;
-        }
     }
 
     private void OnEnable()
