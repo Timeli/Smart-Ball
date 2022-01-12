@@ -10,7 +10,7 @@ public class BallController : MonoBehaviour
     private Ball _ball;
     private float _elapsedTime = 0f;
     private float _notificationTime = 1f;
-    private float _allTimeInBox;
+    public float _allTimeInBox;
 
     public event Action<float> Ticked;
     

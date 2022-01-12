@@ -13,8 +13,8 @@ public class ColorChanger : MonoBehaviour
     [SerializeField] private Material _red;
 
     private readonly int _toGreenTime = 3;
-    private readonly int _toOrangeTime = 7;
-    private readonly int _toRedTime = 12;
+    private readonly int _toOrangeTime = 11;
+    private readonly int _toRedTime = 21;
 
     private Renderer _renderer;
 
